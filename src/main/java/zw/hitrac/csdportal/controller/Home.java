@@ -1,7 +1,9 @@
 package zw.hitrac.csdportal.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -15,19 +17,13 @@ public class Home {
         return "index";
     }
 
-    @RequestMapping("/provider")
-    public String provider() {
-        return "provider/index";
-    }
-
-    @RequestMapping("/facility")
-    public String facility() {
-        return "facility/index";
-    }
-
-    @RequestMapping("/service")
-    public String service() {
-        return "service/index";
+    @RequestMapping("/search/result")
+    public String searchResult(@RequestParam(name = "searchString", required = false) String searchString, Model model) {
+        if (searchString == null) {
+            return "index";
+        } else {
+            return "";
+        }
     }
 
 }
