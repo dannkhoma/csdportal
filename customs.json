@@ -12,6 +12,9 @@
         "th:href": {
             "context": "link"
         },
+        "th:each": {
+            "context": "div"
+        },
         "th:value": {
             "context": "input"
         }

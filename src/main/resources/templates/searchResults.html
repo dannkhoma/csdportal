@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Search Results</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
@@ -12,6 +12,26 @@
                 <input type="submit" value="Search" />
             </form>
         </div>
-        <div>Search Results</div>
+       
+        
+
+             <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="wrappedEntity : ${wrappedEntities}">                               
+                            <td th:text="${wrappedEntity.name}"></td>
+                            <td th:text="${wrappedEntity.type}"></td>
+                        </tr>                         
+                    </tbody>
+                </table>
+             </div>
+        
+        
     </body>
 </html>
