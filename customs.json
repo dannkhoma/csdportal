@@ -1,0 +1,19 @@
+{
+    "elements": {},
+    "attributes": {
+        "th:text": {},
+        "aria-expanded": {},
+        "th:action": {
+            "context": "form"
+        },
+        "th:src": {
+            "context": "script"
+        },
+        "th:href": {
+            "context": "link"
+        },
+        "th:value": {
+            "context": "input"
+        }
+    }
+}

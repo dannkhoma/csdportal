@@ -40,8 +40,8 @@
             <h3>Welcome</h3>
             <hr/>
             <div>
-                <form th:action="@{/}">
-                    <input type="text" id="search" name="search"  placeholder="Search Providers, Facilities and Services" />
+                <form th:action="@{/search/result}">
+                    <input type="text" id="q" name="q" th:value="${q}"  placeholder="Search Providers, Facilities and Services" />
                     <input type="submit" value="Search" />
                 </form>
             </div>
