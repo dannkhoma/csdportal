@@ -11,7 +11,6 @@
 
         <!-- Custom styles for this template -->
         <link th:href="@{csdportal/css/csdportal.css}" rel="stylesheet" />
-
     </head>
     <body>
 
@@ -37,21 +36,18 @@
 
 
         <div class="container">
-            <h3>Welcome to the Public Portal</h3>
+            <h3>Search Provider</h3>
             <br/>
             <div>
-                You can use the portal to find doctors, hospitals, clinics, and other health care providers and services such as urgent care centers, vision, and medical supply providers. If you know the name, type it in the search box. You can also search by the kind of care you need, such as ear nose and throat, skin, maternity, and urgent care.
+                You can use the portal to search providers by name, surname, National ID.
             </div>
             <br/>
             <table>
                 <tr>
-                    <td><a th:href="@{/provider}">Provider Search</a></td>
+                    <td><a th:href="@{/}">Search Health Worker by National ID</a></td>
                 </tr>
                 <tr>
-                    <td><a th:href="@{/facility}" >Health Facility Search</a></td>
-                </tr>
-                <tr>
-                    <td><a th:href="@{/service}" >Service Search</a></td>
+                    <td><a th:href="@{/}">Search Health Worker by Name</a></td>
                 </tr>
             </table>
         </div>

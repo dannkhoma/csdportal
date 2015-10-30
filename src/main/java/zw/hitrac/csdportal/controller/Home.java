@@ -14,4 +14,20 @@ public class Home {
     public String index() {
         return "index";
     }
+
+    @RequestMapping("/provider")
+    public String provider() {
+        return "provider/index";
+    }
+
+    @RequestMapping("/facility")
+    public String facility() {
+        return "facility/index";
+    }
+
+    @RequestMapping("/service")
+    public String service() {
+        return "service/index";
+    }
+
 }
