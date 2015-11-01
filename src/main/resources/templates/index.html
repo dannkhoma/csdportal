@@ -1,62 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>CSD Portal</title>
 
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1"  />
-
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link th:href="@{csdportal/css/bootstrap.min.css}" rel="stylesheet" />
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link th:href="@{css/styles.css}" rel="stylesheet}" />
         <link rel='stylesheet' th:href='@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}' />
-
         <!-- Custom styles for this template -->
         <link th:href="@{csdportal/css/csdportal.css}" rel="stylesheet" />
-
     </head>
     <body>
 
-        <nav class="navbar navbar-fixed-top navbar-inverse">
-            <div class="container">
+        <div class="navbar navbar-default navbar-fixed-top header" id="subnav">
+            <div class="col-md-12">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+
+                    <a th:href="@{#}" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Home <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
+                    <ul class="nav dropdown-menu">
+                        <li><a th:href="@{#}"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
+                        <li><a th:href="@{#}"><i class="glyphicon glyphicon-dashboard" style="color:#0000aa;"></i> Dashboard</a></li>
+                        <li><a th:href="@{#}"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Pages</a></li>
+                        <li class="nav-divider"></li>
+                        <li><a th:href="@{#}"><i class="glyphicon glyphicon-cog" style="color:#dd1111;"></i> Settings</a></li>
+                        <li><a th:href="@{#}"><i class="glyphicon glyphicon-plus"></i> More..</a></li>
+                    </ul>
+
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse2">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" th:href="@{/}">Health Public Web Site</a>
+
                 </div>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a th:href="@{/}">Home</a></li>
+                <div class="collapse navbar-collapse" id="navbar-collapse2">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a th:href="@{#}">Posts</a></li>
+                        <li><a th:href="@{#loginModal}" role="button" data-toggle="modal">Login</a></li>
+                        <li><a th:href="@{#aboutModal}" role="button" data-toggle="modal">About</a></li>
                     </ul>
-                </div><!-- /.nav-collapse -->
-            </div><!-- /.container -->
-        </nav><!-- /.navbar -->
-
-
+                </div>	
+            </div>	
+        </div>
 
         <div class="container">
-            <h3>Welcome</h3>
-            <hr/>
-            <div>
-                <form th:action="@{/search/result}">
-                    <input type="text" id="q" name="q" th:value="${q}"  placeholder="Search Providers, Facilities and Services" />
-                    <input type="submit" value="Search" />
-                </form>
-            </div>
-            <br/>
-            <div>
-                You can use the portal to find doctors, hospitals, clinics, and other health care providers and services such as urgent care centers, vision, and medical supply providers. If you know the name, type it in the search box. You can also search by the kind of care you need, such as ear nose and throat, skin, maternity, and urgent care.
-            </div>
-            <br/>
 
+            <div class="form col-lg-12"><h3>Welcome</h3></div>
+            <form class="form col-lg-12" th:action="@{/search/result}">
+                <span>
+                    <input type="text" id="q" name="q" th:value="${q}" class="form-control" placeholder="Search Providers, Facilities and Services" />
+                    <br/>
+                    <button class="btn btn-default btn-primary col-md-1" type="submit"><i class="glyphicon glyphicon-search"></i> Search</button>
+                </span>
+            </form>
         </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="container alert alert-info">
+            You can use the portal to find doctors, hospitals, clinics, and other health care providers and services such as urgent care centers, vision, and medical supply providers. If you know the name, type it in the search box. You can also search by the kind of care you need, such as ear nose and throat, skin, maternity, and urgent care.
+        </div>
+
+        <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h2 class="text-center"><img src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"/><br/>Login</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form col-md-12 center-block">
+                            <div class="form-group">
+                                <input type="text" class="form-control input-lg" placeholder="Email"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control input-lg" placeholder="Password"/>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-lg btn-block">Sign In</button>
+                                <span class="pull-right"><a th:href="@{#}">Register</a></span><span><a th:href="@{#}">Need help?</a></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-md-12">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                        </div>	
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--about modal-->
+        <div id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h2 class="text-center">About</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-12 text-center">
+                            <a href="http://www.bootply.com/DwnjTNuvVt">This Bootstrap Template</a><br/>was made with <i class="glyphicon glyphicon-heart"></i> by <a href="http://bootply.com/templates">Bootply</a>
+                            <br/><br/>
+                            <a href="https://github.com/iatek/bootstrap-google-plus">GitHub Fork</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- script references -->
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+        <script th:src="@{//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js}"></script>
+        <script th:src="@{js/bootstrap.min.js}"></script>
+        <script th:src="@{js/scripts.js}"></script>
 
     </body>
 </html>

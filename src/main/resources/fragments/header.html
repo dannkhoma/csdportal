@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>Search Results</title>
+        <title>CSD Portal</title>
+
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="generator" content="Bootply" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
         <link th:href="@{csdportal/css/bootstrap.min.css}" rel="stylesheet" />
         <!--[if lt IE 9]>
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -15,22 +15,10 @@
         <link rel='stylesheet' th:href='@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}' />
         <!-- Custom styles for this template -->
         <link th:href="@{csdportal/css/csdportal.css}" rel="stylesheet" />
-        <style>body {
-                overflow-x: hidden; /* Prevent scroll on narrow devices */
-            }
-            body {
-                padding-top: 70px;
-            }
-            footer {
-                padding: 30px 0;
-            }</style>
-
-
-
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top header" id="subnav">
+        <div class="navbar navbar-default navbar-fixed-top header" id="subnav" th:fragment="header">
             <div class="col-md-12">
                 <div class="navbar-header">
 
@@ -63,34 +51,6 @@
             </div>	
         </div>
 
-
-        <br/>
-        <div class="container">
-            <form class="form col-lg-12" th:action="@{/search/result}">
-                <input class="form-control" type="text" id="q" name="q" th:value="${q}"  placeholder="Search Providers, Facilities and Services" />
-                <br/>
-                <button class="btn btn-default btn-primary col-md-1" type="submit" ><i class="glyphicon glyphicon-search"></i> Search</button>
-            </form>
-        </div>
-
-
-
-        <div class="container">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="wrappedEntity : ${wrappedEntities}">                               
-                        <td th:text="${wrappedEntity.name}"></td>
-                        <td th:text="${wrappedEntity.type}"></td>
-                    </tr>                         
-                </tbody>
-            </table>
-        </div>
 
         <!-- script references -->
 
