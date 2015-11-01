@@ -83,8 +83,11 @@
             <div class="row">
                 <div class="col-lg-8" th:each="wrappedEntity : ${wrappedEntities}">
                     <br/>
-                    <div><a th:text="${wrappedEntity.name}"></a></div>
-                    <div th:text="${wrappedEntity.type}"></div>
+                    <div th:switch="${wrappedEntity.type}"> 
+                        <div th:case="'Provider'"><a th:text="${wrappedEntity.name}" th:href="@{/provider/view/(entityId=${wrappedEntity.entityId})}"></a></div>
+                        <div th:case="'Facility'"><a th:text="${wrappedEntity.name}" th:href="@{/facility/view/(entityId=${wrappedEntity.entityId})}"></a></div>
+                        <div th:text="${wrappedEntity.type}"></div>
+                    </div>
                 </div>
             </div>
         </div>
