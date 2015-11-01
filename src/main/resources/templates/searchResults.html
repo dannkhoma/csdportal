@@ -76,24 +76,20 @@
         </div>
         <br/>
 
-        <div align="center" class="container">
-            <div><h3>Searched Results</h3></div>
-            <br/>
-            <table style="width: 800px" class="table-striped table-condensed">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="wrappedEntity : ${wrappedEntities}">                               
-                        <td th:text="${wrappedEntity.name}"></td>
-                        <td th:text="${wrappedEntity.type}"></td>
-                    </tr>                         
-                </tbody>
-            </table>
+        <div class="container">
+            <div class="alert alert-info">
+                Advertising space available here, please contact <a th:href="@{http://www.hitrac.co.zw}">HITRAC </a>
+            </div>
+            <div class="row">
+                <div class="col-lg-8" th:each="wrappedEntity : ${wrappedEntities}">
+                    <br/>
+                    <div><a th:text="${wrappedEntity.name}"></a></div>
+                    <div th:text="${wrappedEntity.type}"></div>
+                </div>
+            </div>
         </div>
+
+
 
         <!-- script references -->
 
