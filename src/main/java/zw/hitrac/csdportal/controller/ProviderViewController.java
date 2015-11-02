@@ -13,7 +13,7 @@ import zw.co.hitrac.jaxcsd.api.query.CallOptions;
 import zw.co.hitrac.jaxcsd.api.query.CsdQueryClient;
 import zw.co.hitrac.jaxcsd.api.query.RequestParams;
 import zw.co.hitrac.zhris.csd.adapter.common.xp.ZimProviderExtensionParser;
-import zw.co.hitrac.zhris.csd.adapter.common.xp.ZimStoredFunctionConstants;
+import zw.hitrac.csdportal.util.Utility;
 
 /**
  *
@@ -30,17 +30,12 @@ public class ProviderViewController {
     }
 
     public Provider getProvider(String entityId) {
-
-        ZimProviderExtensionParser zimProviderExtensionParser = new ZimProviderExtensionParser();
-        CsdParserExtensions csdParserExtensions = new CsdParserExtensions();
-        csdParserExtensions.setProviderExtensionParser(zimProviderExtensionParser);
         CsdQueryClient csdQueryClient = new CsdQueryClient();
         RequestParams requestParams = new RequestParams();
         requestParams.setUniqueID(new Provider(entityId));
-        String functionId = ZimStoredFunctionConstants.GET_PROVIDER_WITH_EXTENSIONS;
-        String httpAddress = "http://192.168.1.22:8984/CSD/csr/mohcc/careServicesRequest";
+        String functionId = "urn:ihe:iti:csd:2014:stored-function:provider-search";
+        String httpAddress = "http://192.168.1.22:8984/CSD/csr/"+Utility.getDirectory(entityId)+"/careServicesRequest";
         CallOptions callOptions = new CallOptions();
-        callOptions.setCsdParserExtensions(csdParserExtensions);
         CSD csd = csdQueryClient.callStandardStoredFunction(requestParams, functionId, httpAddress, callOptions);
         List<Provider> providers = csd.getProviderDirectory().getProviders();
         if (providers.isEmpty()) {
@@ -51,5 +46,7 @@ public class ProviderViewController {
         }
 
     }
+    
+    
 
 }

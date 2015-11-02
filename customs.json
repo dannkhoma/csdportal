@@ -9,11 +9,20 @@
         "th:src": {
             "context": "script"
         },
+        "th:switch": {
+            "context": "div"
+        },
         "th:href": {
             "context": "link"
         },
         "th:each": {
             "context": "div"
+        },
+        "th:case": {
+            "context": "div"
+        },
+        "th:inline": {
+            "context": "script"
         },
         "th:value": {
             "context": "input"
