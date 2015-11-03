@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Public Health Portal</title>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link th:href="@{/csdportal/css/bootstrap.min.css}" rel="stylesheet" />
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link th:href="@{/csdportal/css/styles.css}" rel="stylesheet}" />
+        <link rel='stylesheet' th:href='@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}' />
+        <!-- Custom styles for this template -->
+        <link th:href="@{/csdportal/css/csdportal.css}" rel="stylesheet" />
+    </head>
+    <body th:fragment="header">
+
+        <div class="navbar navbar-default navbar-fixed-top header" id="subnav" >
+            <div class="col-md-12">
+                <div class="navbar-header">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a th:href="@{/}">
+                            <img src="@{/csdportal/img/logo.jpeg}"
+                                 th:src="@{/csdportal/img/logo.jpeg}" height="70" with="80"/> 
+                            Public Health Web Site</a>
+
+                    </div>
+                </div>	
+            </div>
+        </div>
+        <!-- script references -->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+        <script th:src="@{//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js}"></script>
+        <script th:src="@{/csdportal/js/bootstrap.min.js}"></script>
+        <script th:src="@{/csdportal/js/scripts.js}"></script>
+
+    </body>
+</html>
