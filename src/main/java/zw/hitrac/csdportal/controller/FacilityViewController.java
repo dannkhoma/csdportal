@@ -25,17 +25,18 @@ public class FacilityViewController {
     public String searchResult(@RequestParam(name = "entityId", required = true) String entityId, Model model) {
         Facility facility = getFacility(entityId);
         model.addAttribute("facility", facility);
+
         return "facility/facility_view";
     }
 
     public Facility getFacility(String entityId) {
-        
+
         CsdQueryClient csdQueryClient = new CsdQueryClient();
         RequestParams requestParams = new RequestParams();
-        System.out.println("Entity ID=="+entityId);
+        System.out.println("Entity ID==" + entityId);
         requestParams.setUniqueID(new Provider(entityId));
         String functionId = "urn:ihe:iti:csd:2014:stored-function:facility-search";
-        String httpAddress = "http://192.168.1.22:8984/CSD/csr/"+Utility.getDirectory(entityId)+"/careServicesRequest";
+        String httpAddress = "http://192.168.1.22:8984/CSD/csr/" + Utility.getDirectory(entityId) + "/careServicesRequest";
         CallOptions callOptions = new CallOptions();
         CSD csd = csdQueryClient.callStandardStoredFunction(requestParams, functionId, httpAddress, callOptions);
         List<Facility> facilities = csd.getFacilityDirectory().getFacilities();

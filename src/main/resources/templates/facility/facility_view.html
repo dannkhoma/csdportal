@@ -14,7 +14,8 @@
 
         <script src="http://maps.googleapis.com/maps/api/js"></script>
 
-        <script th:inline="javascript">
+        <script th:if="${facility.geocode} != null" th:inline="javascript">
+
             var latitude = /*[[${facility.geocode.latitude}]]*/ 'Unavailable';
             var longitude = /*[[${facility.geocode.longitude}]]*/ 'Unavailable';
             function initialize() {
