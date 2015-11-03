@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>CSD Portal</title>
+        <title>Public Health Portal</title>
 
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,6 +18,7 @@
             var latitude = /*[[${facility.geocode.latitude}]]*/ 'Unavailable';
             var longitude = /*[[${facility.geocode.longitude}]]*/ 'Unavailable';
             function initialize() {
+
                 var mapProp = {
                     center: new google.maps.LatLng(latitude, longitude),
                     zoom: 8,
@@ -30,6 +31,7 @@
 
                 marker.setMap(map);
             }
+
             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
 
@@ -41,17 +43,21 @@
         <br/>
         <br/>
         <div class="container">
-            <div><h1 th:text="${facility.primaryName}"></h1></div>
+            <div class="row">
+                <div  class="col-lg-8">
+                    <span><h2><i class="glyphicon glyphicon-home"></i> Details for <span th:text="${facility.primaryName}"></span> <span> Facility</span></h2></span>
+                    <div>
+                        <div id="googleMap" style="width:500px;height:380px;"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div  class="alert alert-info">
+                        Advertising space available here, please contact <a th:href="@{http://www.hitrac.co.zw}">HITRAC </a>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <div id="googleMap" style="width:500px;height:380px;"></div>
-        </div>
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
 
     </body>
 </html>
