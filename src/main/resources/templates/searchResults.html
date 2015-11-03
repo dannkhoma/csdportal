@@ -47,9 +47,10 @@
                             <div th:case="'Provider'"><i class="glyphicon glyphicon-user"></i>
                                 <a th:text="${wrappedEntity.name}" th:href="@{/provider/view/(entityId=${wrappedEntity.entityId})}"></a>
                             </div>
-                            <div th:case="'Facility'"><i class="glyphicon glyphicon-home"></i>
+                            <div th:case="'Facility'"><img th:src="@{/csdportal/img/facility.png}"/>
                                 <a th:text="${wrappedEntity.name}" th:href="@{/facility/view/(entityId=${wrappedEntity.entityId})}"></a>
                             </div>
+                            <br/>
                             <div th:text="${wrappedEntity.type}"></div>
                         </div>
                     </div>
