@@ -1,5 +1,6 @@
 package zw.hitrac.csdportal.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import zw.co.hitrac.jaxcsd.api.domain.CSD;
+import zw.co.hitrac.jaxcsd.api.domain.Facility;
 import zw.co.hitrac.jaxcsd.api.domain.Provider;
+import zw.co.hitrac.jaxcsd.api.domain.ProviderFacility;
 import zw.co.hitrac.jaxcsd.api.query.CallOptions;
 import zw.co.hitrac.jaxcsd.api.query.CsdQueryClient;
 import zw.co.hitrac.jaxcsd.api.query.RequestParams;
@@ -23,6 +26,7 @@ public class ProviderViewController {
     @RequestMapping(value = "/provider/view", method = RequestMethod.GET)
     public String searchResult(@RequestParam(name = "entityId", required = true) String entityId, Model model) {
         Provider provider = getProvider(entityId);
+
         model.addAttribute("provider", provider);
         return "provider/provider_view";
     }
@@ -43,6 +47,34 @@ public class ProviderViewController {
             return $provider;
         }
 
+    }
+
+    public List<Facility> facilities(Provider provider, String entityId) {
+        List<Facility> facilities = new ArrayList<>();
+
+        if (provider.getProviderFacilities() != null) {
+            List<ProviderFacility> providerFacilities = provider.getProviderFacilities().getProviderFacilities();
+
+            if (providerFacilities != null && !providerFacilities.isEmpty()) {
+                for (ProviderFacility providerFacility : providerFacilities) {
+                    Facility facility = getFacility(facilities, providerFacility.getEntityID());
+                    if (facility != null) {
+                        facilities.add(facility);
+                    }
+                }
+            }
+        }
+        return facilities;
+    }
+
+    private Facility getFacility(List<Facility> facilities, String entityID) {
+
+        for (Facility facility : facilities) {
+            if (facility.getEntityID().equalsIgnoreCase(entityID)) {
+                return facility;
+            }
+        }
+        return null;
     }
 
 }
