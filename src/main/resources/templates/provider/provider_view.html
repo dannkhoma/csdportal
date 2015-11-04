@@ -117,18 +117,18 @@
                     </table>
                 </div>
             </div>
-           
-          
-            <!--            <div class="row">
-                            <div class="col-lg-8">
-                                <h2>Facilities</h2>
-                                <table>
-                                    <tr th:each="provideFacility : ${provider.providerFacilities.providerFacilities}">
-                                        <td th:text="${provideFacility.primaryName}"></td>
-                                    </tr>   
-                                </table>
-                            </div>
-                        </div>-->
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <h2>Facilities</h2>
+                    <table>
+                        <tr th:each="facility : ${facilities}">
+                            <td th:text="${facility.primaryName}"></td>
+                        </tr>   
+                    </table>
+                </div>
+            </div>
+
         </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

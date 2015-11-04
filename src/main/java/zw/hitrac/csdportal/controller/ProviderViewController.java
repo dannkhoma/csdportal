@@ -14,7 +14,7 @@ import zw.co.hitrac.jaxcsd.api.domain.ProviderFacility;
 import zw.co.hitrac.jaxcsd.api.query.CallOptions;
 import zw.co.hitrac.jaxcsd.api.query.CsdQueryClient;
 import zw.co.hitrac.jaxcsd.api.query.RequestParams;
-import zw.hitrac.csdportal.util.Utility;
+import zw.co.hitrac.zhris.csd.adapter.common.util.LookupUtility;
 
 /**
  *
@@ -26,8 +26,10 @@ public class ProviderViewController {
     @RequestMapping(value = "/provider/view", method = RequestMethod.GET)
     public String searchResult(@RequestParam(name = "entityId", required = true) String entityId, Model model) {
         Provider provider = getProvider(entityId);
-
+        List<Facility> facilities = facilities(provider, entityId);
         model.addAttribute("provider", provider);
+        model.addAttribute("facilities", facilities);
+        model.addAttribute("owner", LookupUtility.getOwner(provider.getEntityID()));
         return "provider/provider_view";
     }
 
@@ -36,7 +38,7 @@ public class ProviderViewController {
         RequestParams requestParams = new RequestParams();
         requestParams.setUniqueID(new Provider(entityId));
         String functionId = "urn:ihe:iti:csd:2014:stored-function:provider-search";
-        String httpAddress = "http://192.168.1.22:8984/CSD/csr/" + Utility.getDirectory(entityId) + "/careServicesRequest";
+        String httpAddress = "http://192.168.1.22:8984/CSD/csr/" + LookupUtility.getDirectory(entityId) + "/careServicesRequest";
         CallOptions callOptions = new CallOptions();
         CSD csd = csdQueryClient.callStandardStoredFunction(requestParams, functionId, httpAddress, callOptions);
         List<Provider> providers = csd.getProviderDirectory().getProviders();
@@ -57,7 +59,7 @@ public class ProviderViewController {
 
             if (providerFacilities != null && !providerFacilities.isEmpty()) {
                 for (ProviderFacility providerFacility : providerFacilities) {
-                    Facility facility = getFacility(facilities, providerFacility.getEntityID());
+                    Facility facility = getFacility(providerFacility.getEntityID());
                     if (facility != null) {
                         facilities.add(facility);
                     }
@@ -67,7 +69,17 @@ public class ProviderViewController {
         return facilities;
     }
 
-    private Facility getFacility(List<Facility> facilities, String entityID) {
+    private Facility getFacility(String entityID) {
+
+        CsdQueryClient csdQueryClient = new CsdQueryClient();
+        RequestParams requestParams = new RequestParams();
+        System.out.println("Entity ID==" + entityID);
+        requestParams.setUniqueID(new Provider(entityID));
+        String functionId = "urn:ihe:iti:csd:2014:stored-function:facility-search";
+        String httpAddress = "http://192.168.1.22:8984/CSD/csr/" + LookupUtility.getDirectory(entityID) + "/careServicesRequest";
+        CallOptions callOptions = new CallOptions();
+        CSD csd = csdQueryClient.callStandardStoredFunction(requestParams, functionId, httpAddress, callOptions);
+        List<Facility> facilities = csd.getFacilityDirectory().getFacilities();
 
         for (Facility facility : facilities) {
             if (facility.getEntityID().equalsIgnoreCase(entityID)) {
