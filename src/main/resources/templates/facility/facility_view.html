@@ -50,7 +50,8 @@
                                    th:src="@{/csdportal/img/facility.png}"/>  Details for <span th:text="${facility.primaryName}"></span> <span> Facility</span></h3></span>
                     <br/>
                     <div>
-                        <h2>Addresses</h2>
+                        <h2 >Addresses</h2>
+                        
                         <table style="width: 800px" class="table-striped table-condensed">
                             <tr th:each="address : ${facility.addresses}">
                                 <td>
@@ -66,11 +67,12 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div  class="alert alert-info">
+                    <div     class="alert alert-info">
                         Advertising space available here, please contact <a th:href="@{http://www.hitrac.co.zw}">HITRAC </a>
                     </div>
                 </div>
             </div>
+            <div th: replace="fragments/footer :: footer"></div>
         </div>
 
 
