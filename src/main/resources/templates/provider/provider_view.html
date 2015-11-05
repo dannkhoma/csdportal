@@ -115,8 +115,8 @@
                             <tr th:each="credential :${provider.credentials}">                               
                                 <td th:text="${credential.number}"></td>
                                 <td th:text="${credential.codedType.value}"></td>
-                                <td th:text="${#dates.format(credential.credentialIssueDate,'dd/MMM/yyyy')}"></td>
-                                <td th:text="${#dates.format(credential.credentialRenewalDate,'dd/MMM/yyyy')}"></td>
+                                <td><span th:if="${credential.credentialIssueDate} != null" th:text="${#dates.format(credential.credentialIssueDate,'dd/MMM/yyyy')}"></span></td>
+                                <td><span th:if="${credential.credentialRenewalDate} != null" th:text="${#dates.format(credential.credentialRenewalDate,'dd/MMM/yyyy')}"></span></td>
                                 <td th:text="${credential.issuingAuthority}"></td>
                             </tr> 
                         </tbody>
