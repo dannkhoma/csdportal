@@ -46,12 +46,11 @@
         <div class="container">
             <div class="row">
                 <div  class="col-lg-8">
-                    <span><h3><img src="@{/csdportal/img/facility.png}"
-                                   th:src="@{/csdportal/img/facility.png}"/>  Details for <span th:text="${facility.primaryName}"></span> <span> Facility</span></h3></span>
+                    <span><h3><img th:src="@{/csdportal/img/facility.png}"/>  Details for <span th:text="${facility.primaryName}"></span> <span> Facility</span></h3></span>
                     <br/>
                     <div>
                         <h2 >Addresses</h2>
-                        
+
                         <table style="width: 800px" class="table-striped table-condensed">
                             <tr th:each="address : ${facility.addresses}">
                                 <td>
@@ -72,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <div th: replace="fragments/footer :: footer"></div>
+            <div th:replace="fragments/footer :: footer"></div>
         </div>
 
 
