@@ -45,7 +45,7 @@
                         <br/>
                         <div th:switch="${wrappedEntity.type}"> 
                             <div th:case="'Provider'"><img th:src="@{/csdportal/img/provider.png}"/>
-                                <span><span th:text="${wrappedEntity.title}"></span><a th:text="${wrappedEntity.name}" th:href="@{/provider/view/(entityId=${wrappedEntity.entityId})}"></a></span>
+                                <a th:href="@{/provider/view/(entityId=${wrappedEntity.entityId})}"><span th:text="${wrappedEntity.title}"></span> <span th:text="${wrappedEntity.name}"></span></a>
                                 <div style="color: graytext;font-size: 12px" th:each="codedType : ${wrappedEntity.provider.codedTypes}">
                                     <div th:text="${codedType.value}"></div>
                                 </div>
