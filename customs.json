@@ -1,10 +1,24 @@
 {
-    "elements": {},
+    "elements": {
+        "h3": {}
+    },
     "attributes": {
         "th:text": {},
+        "th:": {
+            "context": "div"
+        },
         "aria-expanded": {},
         "th:action": {
             "context": "form"
+        },
+        "th:each": {
+            "context": "div"
+        },
+        "th:inline": {
+            "context": "script"
+        },
+        "th:fragment": {
+            "context": "div"
         },
         "th:src": {
             "context": "script"
@@ -12,17 +26,14 @@
         "th:switch": {
             "context": "div"
         },
+        "th:replace": {
+            "context": "div"
+        },
         "th:href": {
             "context": "link"
         },
-        "th:each": {
-            "context": "div"
-        },
         "th:case": {
             "context": "div"
-        },
-        "th:inline": {
-            "context": "script"
         },
         "th:value": {
             "context": "input"
