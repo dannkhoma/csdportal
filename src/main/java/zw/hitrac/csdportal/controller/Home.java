@@ -26,7 +26,7 @@ public class Home {
         if (q == null || q.trim().length() < 3) {
             return "index";
         } else {
-            String address = "http://192.168.1.22:8984/CSD/csr/mohcc/careServicesRequest";
+            String address = "http://zhrisproject.hitrac.co.zw:9094/CSD/csr/mohcc/careServicesRequest";
             List<WrappedEntity> wrappedEntities = EntityFinder.getEntitiesFromAllDirectories(q, address);
             model.addAttribute("wrappedEntities", wrappedEntities);
             model.addAttribute("q", q);
