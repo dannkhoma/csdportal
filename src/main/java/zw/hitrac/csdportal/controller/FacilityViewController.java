@@ -13,6 +13,7 @@ import zw.co.hitrac.jaxcsd.api.query.CallOptions;
 import zw.co.hitrac.jaxcsd.api.query.CsdQueryClient;
 import zw.co.hitrac.jaxcsd.api.query.RequestParams;
 import zw.co.hitrac.zhris.csd.adapter.common.util.LookupUtility;
+import zw.hitrac.csdportal.util.UrlUtil;
 
 /**
  *
@@ -36,7 +37,7 @@ public class FacilityViewController {
         System.out.println("Entity ID==" + entityId);
         requestParams.setUniqueID(new Provider(entityId));
         String functionId = "urn:ihe:iti:csd:2014:stored-function:facility-search";
-        String httpAddress = "http://zhrisproject.hitrac.co.zw:9094/CSD/csr/" + LookupUtility.getDirectory(entityId) + "/careServicesRequest";
+        String httpAddress = UrlUtil.PRODUCTION_OPENINFOMAN_CSR_URL + LookupUtility.getDirectory(entityId) + "/careServicesRequest";
         CallOptions callOptions = new CallOptions();
         CSD csd = csdQueryClient.callStandardStoredFunction(requestParams, functionId, httpAddress, callOptions);
         List<Facility> facilities = csd.getFacilityDirectory().getFacilities();

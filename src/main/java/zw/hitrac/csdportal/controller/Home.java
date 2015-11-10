@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import zw.co.hitrac.zhris.csd.adapter.common.domain.WrappedEntity;
 import zw.co.hitrac.zhris.csd.adapter.common.util.EntityFinder;
+import zw.hitrac.csdportal.util.UrlUtil;
 import zw.hitrac.csdportal.util.WrappedEntityComparator;
 
 /**
@@ -28,7 +29,7 @@ public class Home {
         if (q == null || q.trim().length() < 3) {
             return "index";
         } else {
-            String address = "http://zhrisproject.hitrac.co.zw:9094/CSD/csr/mohcc/careServicesRequest";
+            String address = UrlUtil.PRODUCTION_OPENINFOMAN_URL;
             List<WrappedEntity> wrappedEntities = EntityFinder.getEntitiesFromAllDirectories(q, address);
             Collections.sort(wrappedEntities, new WrappedEntityComparator());
             model.addAttribute("wrappedEntities", wrappedEntities);
