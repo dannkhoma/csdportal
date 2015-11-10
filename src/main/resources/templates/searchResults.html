@@ -18,58 +18,161 @@
     </head>
     <body>
         <div th:replace="fragments/header :: header"></div>
+
+
         <br/>
         <div class="container">
+
+
+
             <p>&nbsp;</p>
+
+
+
             <div class="row">
+
+
+
                 <div class="form col-lg-8">
+
+
+
+
                     <form th:action="@{/search/result}">
+
+
+
                         <div class="input-group">
                             <input type="text" id="q" name="q" th:value="${q}" class="form-control" placeholder="Search Providers, Facilities and Services" aria-describedby="basic-addon2"/>
                             <span class="input-group-addon" id="basic-addon2"><button class="btn-link" type="submit"><i class="glyphicon glyphicon-search"></i> Search</button></span>
                         </div>
                     </form>
+
+
+
+
                 </div>
+
+
+
             </div>
+
+
         </div>
+
+
+
         <br/>
+
         <div class="container">
+
+
+
             <div>
-                <span th:text="${#lists.size(wrappedEntities)}"></span><span> Results found</span>
+
+                <span   class="badge"  th:text="${#lists.size(wrappedEntities)}"></span><span> Results found</span>
             </div>
         </div>
+
+
+
         <div class="container">
+
+
+
+
             <div class="row">
+
+
+
+
+
+
+
+
                 <div  class="col-lg-8">
+
+
+
                     <div th:each="wrappedEntity : ${wrappedEntities}">
                         <br/>
+
+
+
+
+
                         <div th:switch="${wrappedEntity.type}"> 
+
+
+
+
                             <div th:case="'Provider'"><i class="glyphicon glyphicon-user"></i>
+
+
+
+
+
+
                                 <a th:text="${wrappedEntity.name}" th:href="@{/provider/view/(entityId=${wrappedEntity.entityId})}"></a>
                                 <div style="color: graytext;font-size: 12px" th:each="codedType : ${wrappedEntity.provider.codedTypes}">
                                     <div th:text="${codedType.value}"></div>
                                     <span>@Owned By: </span><div th:text="${codedType.value}"></div>
                                 </div>
                             </div>
+
+
+
                             <div th:case="'Facility'"><img th:src="@{/csdportal/img/facility.png}"/>
                                 <a th:text="${wrappedEntity.name}" th:href="@{/facility/view/(entityId=${wrappedEntity.entityId})}"></a>
                                 <div style="color: graytext;font-size: 12px" th:each="address : ${wrappedEntity.facility.addresses}">
                                     <div th:text="${address.line}"></div>
+
+
+
+
                                 </div>
+
+
+
                             </div>
 
+
+
+
+
+
+
                         </div>
+
+
+
                     </div>
+
+
+
+
+
                 </div>
 
                 <div class="col-lg-4">
-                    <div  class="alert alert-info">
-                        Advertising space available here, please contact <a th:href="@{http://www.hitrac.co.zw}">HITRAC </a>
+
+                    <div  style="color:#ac2925" class="jumbotron">
+                        <h3> Advertising space available here for more information</h3>
+                        <p></p>
+                        <p> <a th:href="@{http://www.hitrac.co.zw}" class="btn btn-primary btn-lg" role="button">click here</a></p>
                     </div>
+
                 </div>
 
 
+
+
+
             </div>
+     
+
+
+
             <div th:replace="fragments/footer :: footer"></div>
         </div>
     </body>
