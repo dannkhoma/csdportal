@@ -1,5 +1,6 @@
 package zw.hitrac.csdportal.controller;
 
+import java.util.Collections;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import zw.co.hitrac.zhris.csd.adapter.common.domain.WrappedEntity;
 import zw.co.hitrac.zhris.csd.adapter.common.util.EntityFinder;
+import zw.hitrac.csdportal.util.WrappedEntityComparator;
 
 /**
  *
@@ -26,8 +28,9 @@ public class Home {
         if (q == null || q.trim().length() < 3) {
             return "index";
         } else {
-            String address = "http://192.168.1.22:8984/CSD/csr/mohcc/careServicesRequest";
+            String address = "http://zhrisproject.hitrac.co.zw:9094/CSD/csr/mohcc/careServicesRequest";
             List<WrappedEntity> wrappedEntities = EntityFinder.getEntitiesFromAllDirectories(q, address);
+            Collections.sort(wrappedEntities, new WrappedEntityComparator());
             model.addAttribute("wrappedEntities", wrappedEntities);
             model.addAttribute("q", q);
             return "searchResults";
