@@ -49,14 +49,30 @@
                     <span><h3><img th:src="@{/csdportal/img/facility.png}"/>  Details for <span th:text="${facility.primaryName}"></span> <span> Facility</span></h3></span>
                     <br/>
                     <div>
-                        <h2 >Addresses</h2>
-
+                        <h2>Address Details</h2>
                         <table style="width: 800px" class="table-striped table-condensed">
                             <tr th:each="address : ${facility.addresses}">
+                                <th th:if="${address.type == 'Physical Address'}">Physical Address: </th>
+                                <th th:if="${address.type == 'Postal Address'}">Postal Address: </th>
                                 <td>
                                     <div th:each="addressLine : ${address.addressLines}">
                                         <div th:text="${addressLine.line}"></div>
                                     </div>
+                                </td>
+                            </tr>  
+                        </table>
+
+                    </div>
+                    <br/>
+                    <div>
+                        <h2>Contact Details</h2>
+                        <table style="width: 800px" class="table-striped table-condensed">
+                            <tr th:each="contactPoint : ${facility.contactPoints}">
+                                <th th:if="${contactPoint.codedType.code == 'email'}">Email Address: </th>
+                                <th th:if="${contactPoint.codedType.code == 'mobile'}">Mobile Number: </th>
+                                <th th:if="${contactPoint.codedType.code == 'telephone'}">Telephone: </th>
+                                <td>
+                                    <div th:text="${contactPoint.codedType.value}"></div>
                                 </td>
                             </tr>  
                         </table>
