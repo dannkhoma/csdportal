@@ -44,10 +44,11 @@
         <br/>
         <br/>
         <div class="container">
+            <span><h3><img th:src="@{/csdportal/img/facility.png}"/>  Details for <span th:text="${facility.primaryName}"></span> <span> Facility</span></h3></span>
+            <br/>
+
             <div class="row">
-                <div  class="col-lg-8">
-                    <span><h3><img th:src="@{/csdportal/img/facility.png}"/>  Details for <span th:text="${facility.primaryName}"></span> <span> Facility</span></h3></span>
-                    <br/>
+                <div th:if="${!facility.addresses.isEmpty()}"  class="col-lg-8">
                     <div>
                         <h2>Address Details</h2>
                         <table style="width: 800px" class="table-striped table-condensed">
@@ -64,7 +65,7 @@
 
                     </div>
                     <br/>
-                    <div>
+                    <div th:if="${!facility.contactPoint.isEmpty()}" >
                         <h2>Contact Details</h2>
                         <table style="width: 800px" class="table-striped table-condensed">
                             <tr th:each="contactPoint : ${facility.contactPoints}">

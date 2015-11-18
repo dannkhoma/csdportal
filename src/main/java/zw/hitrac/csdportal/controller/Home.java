@@ -29,7 +29,7 @@ public class Home {
         if (q == null || q.trim().length() < 3) {
             return "index";
         } else {
-            String address = UrlUtil.PRODUCTION_OPENINFOMAN_URL;
+            String address = UrlUtil.LOCAL_OPENINFOMAN_URL;
             List<WrappedEntity> wrappedEntities = EntityFinder.getEntitiesFromAllDirectories(q, address);
             Collections.sort(wrappedEntities, new WrappedEntityComparator());
             model.addAttribute("wrappedEntities", wrappedEntities);

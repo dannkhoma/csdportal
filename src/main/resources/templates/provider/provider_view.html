@@ -28,7 +28,7 @@
         <div class="container">
             <div class="row">
 
-                <div  class="col-lg-6">
+                <div th:if="${!provider.demographic.names.isEmpty()}" class="col-lg-8">
                     <table style="width: 800px" class="table-condensed">
                         <thead>
                         <th>Title</th>
@@ -44,11 +44,19 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="col-lg-4">
+
+                    <div  style="color:#ac2925" class="jumbotron">
+                        <h3> Advertising space available here for more information</h3>
+                        <p></p>
+                        <p> <a th:href="@{http://www.hitrac.co.zw}" class="btn btn-primary btn-lg" role="button">click here</a></p>
+                    </div>
+                </div>
 
             </div>
             <br/>
             <div class="row">
-                <div  class="col-lg-8">
+                <div th:if="${!provider.demographic.addresses.isEmpty()}" class="col-lg-8">
                     <h3>Address Details</h3>
                     <table style="width: 800px" class="table-condensed">
                         <thead>
@@ -65,18 +73,10 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-lg-4">
-
-                    <div  style="color:#ac2925" class="jumbotron">
-                        <h3> Advertising space available here for more information</h3>
-                        <p></p>
-                        <p> <a th:href="@{http://www.hitrac.co.zw}" class="btn btn-primary btn-lg" role="button">click here</a></p>
-                    </div>
-                </div>
             </div>
             <br/>
             <div class="row">
-                <div class="col-lg-8">
+                <div th:if="${!provider.codedTypes.isEmpty()}" class="col-lg-8">
                     <h2 >Qualifications</h2>
                     <img src="@{/csdportal/img/divider5.png}"
                          th:src="@{/csdportal/img/divider5.png}" width="900px"/>
@@ -99,7 +99,7 @@
             </div>
             <br/>
             <div class="row">
-                <div class="col-lg-8">
+                <div th:if="${!provider.credentials.isEmpty()}" class="col-lg-8">
                     <h3 >Credentials</h3>
                     <img src="@{/csdportal/img/divider5.png}"
                          th:src="@{/csdportal/img/divider5.png}" width="900px"/>
@@ -128,7 +128,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-8">
+                <div th:if="${!facilities.isEmpty()}" class="col-lg-8">
                     <h2 >Facilities</h2>
                     <img th:src="@{/csdportal/img/divider5.png}" width="900px"/>
                     <table>

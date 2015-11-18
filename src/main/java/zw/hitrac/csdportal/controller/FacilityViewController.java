@@ -17,7 +17,7 @@ import zw.hitrac.csdportal.util.UrlUtil;
 
 /**
  *
- * @author hitrac
+ * @author Daniel Nkhoma
  */
 @Controller
 public class FacilityViewController {
@@ -37,7 +37,7 @@ public class FacilityViewController {
         System.out.println("Entity ID==" + entityId);
         requestParams.setUniqueID(new Provider(entityId));
         String functionId = "urn:ihe:iti:csd:2014:stored-function:facility-search";
-        String httpAddress = UrlUtil.PRODUCTION_OPENINFOMAN_CSR_URL + LookupUtility.getDirectory(entityId) + "/careServicesRequest";
+        String httpAddress = UrlUtil.LOCAL_OPENINFOMAN_CSR_URL + LookupUtility.getDirectory(entityId) + "/careServicesRequest";
         CallOptions callOptions = new CallOptions();
         CSD csd = csdQueryClient.callStandardStoredFunction(requestParams, functionId, httpAddress, callOptions);
         List<Facility> facilities = csd.getFacilityDirectory().getFacilities();
