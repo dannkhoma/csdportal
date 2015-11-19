@@ -36,6 +36,23 @@
             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
 
+        <script th:if="${facility.geocode} == null" th:inline="javascript">
+
+            var latitude = -17.86;
+            var longitude = 31.05;
+            function initialize() {
+
+                var mapProp = {
+                    center: new google.maps.LatLng(latitude, longitude),
+                    zoom: 6,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+
 
     </head>
     <body>
@@ -46,6 +63,15 @@
         <div class="container">
             <span><h3><img th:src="@{/csdportal/img/facility.png}"/>  Details for <span th:text="${facility.primaryName}"></span> <span> Facility</span></h3></span>
             <br/>
+
+            <div class="row">
+                <div class="col-lg-6" id="googleMap" style="width:500px;height:380px;padding-left: 55px"></div>
+                <div class="col-lg-1"></div>
+                <div style="color:#843534 " class="col-lg-4 jumbotron">
+                    <h4> Advertising space available here</h4>
+                    <p> <a class="btn btn-primary btn-lg" role="button">click here</a></p>
+                </div>
+            </div>
 
             <div class="row">
                 <div th:if="${!facility.addresses.isEmpty()}"  class="col-lg-8">
@@ -65,7 +91,7 @@
 
                     </div>
                     <br/>
-                    <div th:if="${!facility.contactPoint.isEmpty()}" >
+                    <div th:if="${!facility.contactPoints.isEmpty()}" >
                         <h2>Contact Details</h2>
                         <table style="width: 800px" class="table-striped table-condensed">
                             <tr th:each="contactPoint : ${facility.contactPoints}">
@@ -78,15 +104,6 @@
                             </tr>  
                         </table>
                     </div>
-                    <div>
-                        <div id="googleMap" style="width:500px;height:380px;"></div>
-                    </div>
-                </div>
-                <div style="color:#843534 " class="jumbotron">
-
-                    <h4> Advertising space available here</h4>
-
-                    <p> <a class="btn btn-primary btn-lg" role="button">click here</a></p>
                 </div>
             </div>
 

@@ -27,7 +27,7 @@ public class ProviderViewController {
     @RequestMapping(value = "/provider/view", method = RequestMethod.GET)
     public String searchResult(@RequestParam(name = "entityId", required = true) String entityId, Model model) {
         Provider provider = getProvider(entityId);
-        List<Facility> facilities = facilities(provider, entityId);
+        List<Facility> facilities = facilities(provider);
         model.addAttribute("provider", provider);
         model.addAttribute("facilities", facilities);
         model.addAttribute("owner", LookupUtility.getOwner(provider.getEntityID()));
@@ -39,7 +39,7 @@ public class ProviderViewController {
         RequestParams requestParams = new RequestParams();
         requestParams.setUniqueID(new Provider(entityId));
         String functionId = "urn:ihe:iti:csd:2014:stored-function:provider-search";
-        String httpAddress = UrlUtil.LOCAL_OPENINFOMAN_CSR_URL + LookupUtility.getDirectory(entityId) + "/careServicesRequest";
+        String httpAddress = UrlUtil.PRODUCTION_OPENINFOMAN_CSR_URL + LookupUtility.getDirectory(entityId) + "/careServicesRequest";
         CallOptions callOptions = new CallOptions();
         CSD csd = csdQueryClient.callStandardStoredFunction(requestParams, functionId, httpAddress, callOptions);
         List<Provider> providers = csd.getProviderDirectory().getProviders();
@@ -52,7 +52,7 @@ public class ProviderViewController {
 
     }
 
-    public List<Facility> facilities(Provider provider, String entityId) {
+    public List<Facility> facilities(Provider provider) {
         List<Facility> facilities = new ArrayList<>();
 
         if (provider.getProviderFacilities() != null) {
@@ -77,7 +77,7 @@ public class ProviderViewController {
         System.out.println("Entity ID==" + entityID);
         requestParams.setUniqueID(new Provider(entityID));
         String functionId = "urn:ihe:iti:csd:2014:stored-function:facility-search";
-        String httpAddress = UrlUtil.LOCAL_OPENINFOMAN_CSR_URL + LookupUtility.getDirectory(entityID) + "/careServicesRequest";
+        String httpAddress = UrlUtil.PRODUCTION_OPENINFOMAN_CSR_URL + LookupUtility.getDirectory(entityID) + "/careServicesRequest";
         CallOptions callOptions = new CallOptions();
         CSD csd = csdQueryClient.callStandardStoredFunction(requestParams, functionId, httpAddress, callOptions);
         List<Facility> facilities = csd.getFacilityDirectory().getFacilities();

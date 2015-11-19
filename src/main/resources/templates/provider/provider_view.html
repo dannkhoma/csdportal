@@ -65,8 +65,10 @@
                         <tbody>
                             <tr th:each="address : ${provider.demographic.addresses}">
                                 <td>
-                                    <div    th:each="addressLine : ${address.addressLines}">
-                                        <div th:text="${addressLine.line}"></div>
+                                    <div th:if="${address.type == 'business'}">
+                                        <div th:each="addressLine : ${address.addressLines}">
+                                            <div th:text="${addressLine.line}"></div>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -133,7 +135,9 @@
                     <img th:src="@{/csdportal/img/divider5.png}" width="900px"/>
                     <table>
                         <tr th:each="facility : ${facilities}">
-                            <td th:text="${facility.primaryName}"></td>
+                            <td>
+                                <a th:text="${facility.primaryName}" th:href="@{/facility/view/(entityId=${facility.entityID})}"></a>
+                            </td>
                         </tr>   
                     </table>
                 </div>
